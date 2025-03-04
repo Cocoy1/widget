@@ -1,6 +1,6 @@
 from IPython.display import display, HTML
 
-def loading_ball(message, background_color="", font_size="14px"):
+def loading_ball_box(message, background_color="", font_size="14px"):
     # Colores base y sus tonos más oscuros
     colors = [
         {"base": "#1E3793", "dark": "#12245E"},  # Pelota 1
