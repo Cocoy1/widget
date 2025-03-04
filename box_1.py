@@ -1,9 +1,9 @@
 # box_1.py
 
-from IPython.display import display, HTML  # Asegúrate de que esta línea esté aquí
+from IPython.display import display, HTML
 
 # Función para mostrar cajas de información
-def display_info_box(message, icon="👻", color="#ffcc00", background_color="#292929", border_l="5px", border_r="5px", font_si="14px"):
+def display_info_box(message, icon="👻", color="#ffcc00", background_color="#292929", border_l="5px", border_r="5px", font_size="14px"):
     html_code = f"""
     <div style="
         display: inline-block;
@@ -12,7 +12,7 @@ def display_info_box(message, icon="👻", color="#ffcc00", background_color="#2
         color: white;
         font-family: Arial, sans-serif;
         font-weight: bold;
-        font-size: {font_si};
+        font-size: {font_size};
         text-align: center;
         border-left: {border_l} solid {color};
         border-right: {border_r} solid {color};
@@ -22,4 +22,4 @@ def display_info_box(message, icon="👻", color="#ffcc00", background_color="#2
         <span style="letter-spacing: 2px;">{message}</span>
     </div>
     """
-    display(HTML(html_code))  # Aquí debería funcionar correctamente
+    display(HTML(html_code))  # Mostrar el HTML generado
