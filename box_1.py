@@ -1,4 +1,6 @@
-# Crear widgets con Barras a los lados
+# box_1.py
+
+from IPython.display import display, HTML  # Asegúrate de que esta línea esté aquí
 
 # Función para mostrar cajas de información
 def display_info_box(message, icon="👻", color="#ffcc00", background_color="#292929", border_l="5px", border_r="5px"):
@@ -20,4 +22,4 @@ def display_info_box(message, icon="👻", color="#ffcc00", background_color="#2
         <span style="letter-spacing: 2px;">{message}</span>
     </div>
     """
-    display(HTML(html_code))
+    display(HTML(html_code))  # Esta línea usará la importación de HTML
