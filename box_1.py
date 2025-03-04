@@ -22,4 +22,4 @@ def display_info_box(message, icon="👻", color="#ffcc00", background_color="#2
         <span style="letter-spacing: 2px;">{message}</span>
     </div>
     """
-    display(HTML(html_code))  # Esta línea usará la importación de HTML
+    display(HTML(html_code))  # Aquí debería funcionar correctamente
