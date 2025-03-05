@@ -1,6 +1,6 @@
 from IPython.display import display, HTML
 
-def borde_circular_box(message, icon="🔵", color="#ffcc00", background_color="#292929", font_size="14px", border_color1="#3498db", border_color2="#9b59b6"):
+def display_circular_box(message, icon="🔵", color="#ffcc00", background_color="#292929", font_size="14px", border_color1="#3498db", border_color2="#9b59b6"):
     html_code = f"""
     <style>
     @keyframes circularBorderAnimation {{
