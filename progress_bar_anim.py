@@ -1,8 +1,8 @@
-# bar_Animated.py
+# progress_bar_anim.py
 from IPython.display import display, HTML
 
 # Barra de progreso animada con gradiente
-class ProgressBarAnimatedGradient:
+class ProgressBarAnimated:
     def __init__(self, total, text="Loading...", width=250, height=30, color1="#3498db", color2="#9b59b6", bg_color="#2c3e50", font_color="white"):
         self.total = total
         self.current = 0
