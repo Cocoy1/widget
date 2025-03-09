@@ -85,7 +85,7 @@ def display_inside_box(message, color1="#3498db", color2="#9b59b6", left="7px", 
 # gradient_boxes/circular_box.py
 from IPython.display import display, HTML
 
-def display_circular_box(message, color1="#3498db", color2="#9b59b6", left="5px", right="5px", top="5px", bottom="5px", size="12px", text="white", fund="#292929", Wide="auto", animation_duration="3s"):
+def display_circular_box(message, color1="#3498db", color2="#9b59b6", left="4px", right="4px", top="4px", bottom="4px", size="12px", text="white", fund="#292929", Wide="auto", animation_duration="3s"):
     animation_id = hash(message)
     
     html_code = f"""
