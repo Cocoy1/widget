@@ -1,5 +1,7 @@
 # Cajas con gradiente
 
+from IPython.display import display, HTML
+
 # Función para mostrar cajas con gradiente animado en los bordes
 def display_outside_box(message, color1="#3498db", color2="#9b59b6", left="7px", right="7px", size="12px", text="white", fund="#292929", Wide="auto"):
     animation_id = hash(message)
