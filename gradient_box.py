@@ -1,12 +1,55 @@
-# gradient_box.py
+# gradient_box.py 
 
+# gradient_boxes/outside_box.py
 from IPython.display import display, HTML
 
-# Función para mostrar cajas de información con gradiente animado en los bordes
-def display_interior_box(message, icon="🌂", color="#292929", background_color="#ffcc00", border_l="5px", border_r="5px", font_size="14px", gradient_color1="#3498db", gradient_color2="#9b59b6"):
+def display_outside_box(message, color1="#3498db", color2="#9b59b6", left="7px", right="7px", size="12px", text="white", fund="#292929", Wide="auto"):
+    animation_id = hash(message)
+    
     html_code = f"""
     <style>
-    @keyframes gradientAnimation {{
+    @keyframes borderGradientAnimation_{animation_id} {{
+        0% {{
+            border-image-source: linear-gradient(90deg, {color1}, {color2});
+        }}
+        50% {{
+            border-image-source: linear-gradient(90deg, {color2}, {color1});
+        }}
+        100% {{
+            border-image-source: linear-gradient(90deg, {color1}, {color2});
+        }}
+    }}
+    </style>
+    <div style="
+        display: inline-block;
+        padding: 8px 12px;
+        background-color: {fund};
+        color: {text};
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        font-size: {size};
+        text-align: center;
+        border-left: {left} solid transparent;
+        border-right: {right} solid transparent;
+        margin: 3px 0;
+        border-image: linear-gradient(90deg, {color1}, {color2}) 1;
+        animation: borderGradientAnimation_{animation_id} 3s ease infinite;
+        width: {Wide};
+    ">
+        <span style="letter-spacing: 2px;">{message}</span>
+    </div>
+    """
+    display(HTML(html_code))
+
+# gradient_boxes/inside_box.py
+from IPython.display import display, HTML
+
+def display_inside_box(message, color1="#3498db", color2="#9b59b6", left="7px", right="7px", size="12px", text="white", fund="#292929", Wide="auto"):
+    animation_id = hash(message)
+    
+    html_code = f"""
+    <style>
+    @keyframes gradientAnimation_{animation_id} {{
         0% {{
             background-position: 0% 50%;
         }}
@@ -21,79 +64,88 @@ def display_interior_box(message, icon="🌂", color="#292929", background_color
     <div style="
         display: inline-block;
         padding: 8px 12px;
-        background-color: {background_color};
-        color: white;
+        color: {text};
         font-family: Arial, sans-serif;
         font-weight: bold;
-        font-size: {font_size};
+        font-size: {size};
         text-align: center;
-        border-left: {border_l} solid {color};
-        border-right: {border_r} solid {color};
+        border-left: {left} solid {fund};
+        border-right: {right} solid {fund};
         margin: 3px 0;
-        background: linear-gradient(90deg, {gradient_color1}, {gradient_color2});
+        background: linear-gradient(90deg, {color1}, {color2});
         background-size: 200% 100%;
-        animation: gradientAnimation 3s ease infinite;
+        animation: gradientAnimation_{animation_id} 3s ease infinite;
+        width: {Wide};
     ">
-        <span style="color: {color}; margin-right: 5px;">{icon}</span>
         <span style="letter-spacing: 2px;">{message}</span>
     </div>
     """
-    display(HTML(html_code))  # Mostrar el HTML generado
+    display(HTML(html_code))
 
-# Función para mostrar cajas de información con gradiente animado en el interior
-def display_outside_box(message, icon="☂️", color="#ffcc00", background_color="#292929", border_l="5px", border_r="5px", font_size="14px", gradient_color1="#3498db", gradient_color2="#9b59b6"):
+# gradient_boxes/circular_box.py
+from IPython.display import display, HTML
+
+def display_circular_box(message, color1="#3498db", color2="#9b59b6", left="5px", right="5px", top="5px", bottom="5px", size="12px", text="white", fund="#292929", Wide="auto", animation_duration="3s"):
+    animation_id = hash(message)
+    
     html_code = f"""
     <style>
-    @keyframes borderGradientAnimation {{
+    @keyframes circularBorderAnimation_{animation_id} {{
         0% {{
-            border-image-source: linear-gradient(90deg, {gradient_color1}, {gradient_color2});
+            border-color: {color1};
         }}
         50% {{
-            border-image-source: linear-gradient(90deg, {gradient_color2}, {gradient_color1});
+            border-color: {color2};
         }}
         100% {{
-            border-image-source: linear-gradient(90deg, {gradient_color1}, {gradient_color2});
+            border-color: {color1};
         }}
     }}
     </style>
     <div style="
         display: inline-block;
         padding: 8px 12px;
-        background-color: {background_color};
-        color: white;
+        background-color: {fund};
+        color: {text};
         font-family: Arial, sans-serif;
         font-weight: bold;
-        font-size: {font_size};
+        font-size: {size};
         text-align: center;
-        border-left: {border_l} solid transparent;
-        border-right: {border_r} solid transparent;
+        border-radius: 50px;
+        border-left: {left} solid {color1};
+        border-right: {right} solid {color1};
+        border-top: {top} solid {color1};
+        border-bottom: {bottom} solid {color1};
         margin: 3px 0;
-        border-image: linear-gradient(90deg, {gradient_color1}, {gradient_color2}) 1;
-        animation: borderGradientAnimation 3s ease infinite;
+        animation: circularBorderAnimation_{animation_id} {animation_duration} ease infinite;
+        width: {Wide};
     ">
-        <span style="color: {color}; margin-right: 5px;">{icon}</span>
         <span style="letter-spacing: 2px;">{message}</span>
     </div>
     """
-    display(HTML(html_code))  # Mostrar el HTML generado
+    display(HTML(html_code))
 
-# Función para mostrar cajas de información con gradiente al tocarlo
-def display_interactive_box(message, icon="☂️", color="#292929", background_color="#292929", border_l="5px", border_r="5px", font_size="14px", gradient_color1="#3498db", gradient_color2="#9b59b6"):
+
+# gradient_boxes/interactive_box.py
+from IPython.display import display, HTML
+
+def display_interactive_box(message, color1="#3498db", color2="#9b59b6", left="7px", right="7px", size="12px", text="white", fund="#292929", Wide="auto"):
+    animation_id = hash(message)
+    
     html_code = f"""
     <style>
-    @keyframes borderGradientAnimation {{
+    @keyframes borderGradientAnimation_{animation_id} {{
         0% {{
-            border-image-source: linear-gradient(90deg, {gradient_color1}, {gradient_color2});
+            border-image-source: linear-gradient(90deg, {color1}, {color2});
         }}
         50% {{
-            border-image-source: linear-gradient(90deg, {gradient_color2}, {gradient_color1});
+            border-image-source: linear-gradient(90deg, {color2}, {color1});
         }}
         100% {{
-            border-image-source: linear-gradient(90deg, {gradient_color1}, {gradient_color2});
+            border-image-source: linear-gradient(90deg, {color1}, {color2});
         }}
     }}
-
-    @keyframes gradientAnimation {{
+    @keyframes gradientAnimation_{animation_id} {{
         0% {{
             background-position: 0% 50%;
         }}
@@ -104,41 +156,48 @@ def display_interactive_box(message, icon="☂️", color="#292929", background_
             background-position: 0% 50%;
         }}
     }}
-
-    .gradient-box {{
+    </style>
+    <div id="box_{animation_id}" style="
         display: inline-block;
         padding: 8px 12px;
-        background-color: {background_color};
-        color: white;
+        background-color: {fund};
+        color: {text};
         font-family: Arial, sans-serif;
         font-weight: bold;
-        font-size: {font_size};
+        font-size: {size};
         text-align: center;
-        border-left: {border_l} solid transparent;
-        border-right: {border_r} solid transparent;
+        border-left: {left} solid transparent;
+        border-right: {right} solid transparent;
         margin: 3px 0;
-        border-image: linear-gradient(90deg, {gradient_color1}, {gradient_color2}) 1;
-        animation: borderGradientAnimation 3s ease infinite;
+        border-image: linear-gradient(90deg, {color1}, {color2}) 1;
+        animation: borderGradientAnimation_{animation_id} 3s ease infinite;
+        width: {Wide};
         cursor: pointer;
-    }}
-
-    .gradient-box.active {{
-        background: linear-gradient(90deg, {gradient_color1}, {gradient_color2});
-        background-size: 200% 100%;
-        animation: gradientAnimation 3s ease infinite;
-        border-image: none;
-        border-left: {border_l} solid {color};
-        border-right: {border_r} solid {color};
-    }}
-    </style>
-
-    <div class="gradient-box" onclick="this.classList.toggle('active')">
-        <span style="color: {color}; margin-right: 5px;">{icon}</span>
+    " onmouseover="activateGradient('box_{animation_id}', '{color1}', '{color2}', '{fund}')"
+      onmouseout="deactivateGradient('box_{animation_id}', '{color1}', '{color2}', '{fund}')">
         <span style="letter-spacing: 2px;">{message}</span>
     </div>
-
     <script>
-    // No se necesita JavaScript adicional, ya que se maneja con CSS y el evento onclick.
+    function activateGradient(boxId, color1, color2, fund) {{
+        var box = document.getElementById(boxId);
+        box.style.borderImage = "none";
+        box.style.borderLeft = "7px solid {fund}";
+        box.style.borderRight = "7px solid {fund}";
+        box.style.animation = "none";
+        box.style.background = `linear-gradient(90deg, ${{color1}}, ${{color2}})`;
+        box.style.backgroundSize = '200% 100%';
+        box.style.animation = `gradientAnimation_${{boxId.split('_')[1]}} 3s ease infinite`;
+    }}
+
+    function deactivateGradient(boxId, color1, color2, fund) {{
+        var box = document.getElementById(boxId);
+        box.style.borderImage = `linear-gradient(90deg, ${{color1}}, ${{color2}}) 1`;
+        box.style.borderLeft = "{left} solid transparent";
+        box.style.borderRight = "{right} solid transparent";
+        box.style.animation = `borderGradientAnimation_${{boxId.split('_')[1]}} 3s ease infinite`;
+        box.style.background = "{fund}";
+        box.style.animation = "none";
+    }}
     </script>
     """
     display(HTML(html_code))
