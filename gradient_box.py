@@ -156,5 +156,46 @@ def display_interactive_box(message, color1="#3498db", color2="#9b59b6", left="7
     """
     display(HTML(html_code))
 
+# Función para mostrar cajas circulares con gradiente animado en los bordes
+def display_circular_box(message, color1="#3498db", color2="#9b59b6", left="5px", right="5px", top="5px", bottom="5px", size="12px", text="white", fund="#292929", Wide="auto", animation_duration="3s"):
+    animation_id = hash(message)
+    
+    html_code = f"""
+    <style>
+    @keyframes circularBorderAnimation_{animation_id} {{
+        0% {{
+            border-color: {color1};
+        }}
+        50% {{
+            border-color: {color2};
+        }}
+        100% {{
+            border-color: {color1};
+        }}
+    }}
+    </style>
+    <div style="
+        display: inline-block;
+        padding: 8px 12px;
+        background-color: {fund};
+        color: {text};
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        font-size: {size};
+        text-align: center;
+        border-radius: 50px;
+        border-left: {left} solid {color1};
+        border-right: {right} solid {color1};
+        border-top: {top} solid {color1};
+        border-bottom: {bottom} solid {color1};
+        margin: 3px 0;
+        animation: circularBorderAnimation_{animation_id} {animation_duration} ease infinite;
+        width: {Wide};
+    ">
+        <span style="letter-spacing: 2px;">{message}</span>
+    </div>
+    """
+    display(HTML(html_code))
+    
     #Fin
 
